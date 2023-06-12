@@ -18,7 +18,7 @@ const (
 // PollMaster abstracts away places where you would like to poll state change from the master.
 //
 // Calls poll in a loop until either, poll() returns an error, poll() signals to stop or ctx is canceled.
-func PollMaster(ctx context.Context, poll func() (stop bool, err error)) error {
+func PollMaster(ctx context.Context, yc Client, poll func() (stop bool, err error)) error {
 	tick := time.NewTicker(time.Second)
 	defer tick.Stop()
 
