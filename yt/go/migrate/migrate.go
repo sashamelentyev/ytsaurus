@@ -30,7 +30,7 @@ func waitTabletState(ctx context.Context, yc yt.Client, path ypath.Path, state s
 		defer cancel()
 	}
 
-	return yt.PollMaster(ctx, yc, func() (stop bool, err error) {
+	return yt.PollMaster(ctx, func() (stop bool, err error) {
 		var currentState string
 		err = yc.GetNode(ctx, path.Attr("tablet_state"), &currentState, nil)
 		if err != nil {
